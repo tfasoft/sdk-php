@@ -8,7 +8,7 @@ use TFASoft\TFA;
 
 final class MainTest extends TestCase
 {
-    public function test_tfa()
+    public function test_config()
     {
         $dotenv = Dotenv::createImmutable(__DIR__ . '/..');
         $dotenv->safeLoad();
@@ -16,5 +16,9 @@ final class MainTest extends TestCase
         $userToken = $_ENV['TEST_USER_TOKEN'];
 
         $tfa = new TFA($accessToken);
+        $this->assertEquals($accessToken, $tfa->getAccessToken());
+
+        $tfa = new TFA($accessToken, 'http://test/api/');
+        $this->assertEquals('http://test/api/', $tfa->getBaseUrl());
     }
 }

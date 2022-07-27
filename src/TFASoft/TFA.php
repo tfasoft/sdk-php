@@ -25,7 +25,7 @@ class TFA
      * @param string $accessToken
      * @param string $baseUrl (optional. you can change api base url using this param)
      */
-    function __constructor(string $accessToken, string $baseUrl = 'https://tele-fa-api.herokuapp.com/')
+    function __construct(string $accessToken, string $baseUrl = 'https://tele-fa-api.herokuapp.com/')
     {
         $this->accessToken = $accessToken;
         $this->client = new HttpClient([
@@ -41,6 +41,16 @@ class TFA
     public function getAccessToken(): string
     {
         return $this->accessToken;
+    }
+
+    /**
+     * You can get the API base url by this method
+     * 
+     * @return string
+     */
+    public function getBaseUrl(): string
+    {
+        return $this->client->getConfig('base_url');
     }
 
     /**

@@ -49,6 +49,16 @@ The `$result` will be an array with two `status` and `data` keys.
 `$result["status"]` will be the status code.
 And go to the [next part](#output-structure) to see structure of `$result["data"]`;
 
+Also you can change the base URL of the API:
+
+```php
+$tfa = new TFA("<access-token>", 'http://base-url/of/api/');
+
+// ...
+
+$tfa->getBaseUrl(); // http://base-url/of/api/
+```
+
 ### Output structure
 Here let's know about them in deep (possible results in `$result['data']`).
 
