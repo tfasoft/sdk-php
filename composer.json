@@ -5,7 +5,12 @@
     "license": "MIT",
     "autoload": {
         "psr-4": {
-            "TFASoft\\": "src/"
+            "TFASoft\\": "src/TFASoft"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "TFASoft\\Tests\\": "tests/"
         }
     },
     "authors": [
