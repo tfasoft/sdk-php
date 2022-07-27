@@ -29,7 +29,7 @@ class TFA
     {
         $this->accessToken = $accessToken;
         $this->client = new HttpClient([
-            'base_url' => $baseUrl,
+            'base_uri' => $baseUrl,
         ]);
     }
 
@@ -50,7 +50,7 @@ class TFA
      */
     public function getBaseUrl(): string
     {
-        return $this->client->getConfig('base_url');
+        return $this->client->getConfig('base_uri');
     }
 
     /**
