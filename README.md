@@ -87,3 +87,12 @@ If you want to contribute or change the code:
 - Clone the project
 - Install dependencies by running `$ composer install`
 - Start changing!
+
+To test your changes, you can create a `.env` file in root directory of project:
+
+```
+TEST_ACCESS_TOKEN="<access-token>"
+TEST_USER_TOKEN="<user-token>"
+```
+
+and then run `$ composer test`.
