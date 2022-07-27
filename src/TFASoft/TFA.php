@@ -2,6 +2,8 @@
 
 namespace TFASoft;
 
+use GuzzleHttp\Client as HttpClient;
+
 /**
  * TFASoft handler class
  * 
@@ -15,14 +17,20 @@ class TFA
      */
     protected string $accessToken;
 
+    protected HttpClient $client;
+
     /**
      * You have to pass access token to the constructor
      * 
      * @param string $accessToken
+     * @param string $baseUrl (optional. you can change api base url using this param)
      */
-    function __constructor(string $accessToken)
+    function __constructor(string $accessToken, string $baseUrl = 'https://tele-fa-api.herokuapp.com/')
     {
         $this->accessToken = $accessToken;
+        $this->client = new HttpClient([
+            'base_url' => $baseUrl,
+        ]);
     }
 
     /**
@@ -43,11 +51,13 @@ class TFA
      */
     public function authUser(string $userToken): array
     {
-        $api = "https://tele-fa-api.herokuapp.com/api/access/".$this->accessToken."/".$userToken;
+        $api = "api/access/".$this->accessToken."/".$userToken;
 
-        $data = [ // TODO : call the api and put real data in this
-            "status" => 200,
-            "data" => [],
+        $response = $this->client->get($api);
+
+        $data = [
+            "status" => $response->getStatusCode(),
+            "data" => json_decode($response->getBody()),
         ];
 
         return $data;
