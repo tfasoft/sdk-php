@@ -26,6 +26,9 @@ final class MainTest extends TestCase
 
         $tfa = new TFA($accessToken);
 
-        //$result = $tfa->authUser($userToken);
+        $result = $tfa->authUser($userToken);
+
+        $this->assertTrue(isset($result['status']));
+        $this->assertTrue(isset($result['user']));
     }
 }
