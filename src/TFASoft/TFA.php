@@ -25,11 +25,11 @@ class TFA
      * @param string $accessToken
      * @param string $baseUrl (optional. you can change api base url using this param)
      */
-    function __construct(string $accessToken, string $baseUrl = 'https://tele-fa-api.herokuapp.com/')
+    function __construct(string $accessToken, string $baseUrl = 'https://tele-fa-api.herokuapp.com', string $testUrl = 'http://localhost:8000')
     {
         $this->accessToken = $accessToken;
         $this->client = new HttpClient([
-            'base_uri' => $baseUrl,
+            'base_uri' => $testUrl,
         ]);
     }
 
@@ -61,9 +61,9 @@ class TFA
      */
     public function authUser(string $userToken): array
     {
-        $api = "api/access/".$this->accessToken."/".$userToken;
+        $api = "/api/auth/access";
 
-        $response = $this->client->get($api);
+        $response = $this->client->post($api);
 
         $data = [
             "status" => $response->getStatusCode(),
