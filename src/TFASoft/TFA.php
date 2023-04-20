@@ -25,7 +25,7 @@ class TFA
      * @param string $accessToken
      * @param string $baseUrl (optional. you can change api base url using this param)
      */
-    function __construct(string $accessToken, string $baseUrl = 'https://tfasoft-api.herokuapp.com/api/auth/')
+    function __construct(string $accessToken, string $baseUrl = 'https://tfasoft.com/api/')
     {
         $this->accessToken = $accessToken;
         $this->client = new HttpClient([
@@ -61,7 +61,7 @@ class TFA
      */
     public function authUser(string $userToken): array
     {
-        $api = "auth/access";
+        $api = "access";
 
         $body = [
             "access_token" => $this->accessToken,
